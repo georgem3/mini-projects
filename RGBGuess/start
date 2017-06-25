@@ -15,27 +15,27 @@
 
   <div id="stripe">
     <button id="reset">New colors</button>
-    <span id="status"></span>
-    <button id="easyBtn">Easy</button>
-    <button id="medBtn">Med</button>
-    <button id="hardBtn">Hard</button>
+    <span id="message"></span>
+    <button class="mode">Easy</button>
+    <button class="mode selected">Med</button>
+    <button class="mode">Hard</button>
   </div>
 
   <div id="container">
     <div id="row1">
-      <div class="squares"></div>
-      <div class="squares"></div>
-      <div class="squares"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
     </div>
     <div id="row2">
-      <div class="squares"></div>
-      <div class="squares"></div>
-      <div class="squares"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
     </div>
     <div id="row3">
-      <div class="squares"></div>
-      <div class="squares"></div>
-      <div class="squares"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
     </div>
   </div>
 
