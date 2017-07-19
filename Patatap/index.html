@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Patatap</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script type="text/javascript" src="paper-full.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.4/howler.core.min.js"></script>
+  <script type="text/javascript" src="data.js"></script>
+  <link rel="stylesheet" href="main.css">
+
+  <script type="text/paperscript" canvas="myCanvas">
+    var circles = [];
+
+    // create circles according to pressed key
+    function onKeyDown(event) {
+      var randPt = Point.random(); 
+      var maxPt = new Point(view.size.width, view.size.height);
+      var point = randPt * maxPt;
+      var newCir = new Path.Circle(point, 200);
+      newCir.fillColor = (keyData[event.key].color);
+      keyData[event.key].sound.play();
+      // add the created circle to array
+      circles.push(newCir);
+    }
+    
+    // animating the array of circles
+    function onFrame(event) {
+      for (var i=0; i < circles.length; i++) {
+        circles[i].fillColor.hue += 1;
+        circles[i].scale(.9);
+        // delete circle after fading
+        if (circles[i].area < 1) {
+          circles[i].remove();
+          circles.splice(i, 1);
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="myCanvas" resize></canvas>
+</body>
+</html>
