@@ -2,12 +2,12 @@
 
 ## Melist
 A simple todo list app (add, delete, highlight)
-(https://imgur.com/a/YrJKc)
+[Imgur](http://i.imgur.com/GmjBxvK.png)
 
 ## Patatap
 A game with clicks & sounds
-![](https://imgur.com/a/fPacd)
+[Imgur](http://i.imgur.com/ADx0gKh.png)
 
 ## RGBGuess
 Guess the color based on it's RGB
-(https://imgur.com/a/Grtm2)
+[Imgur](http://i.imgur.com/pg3EB0V.png)
