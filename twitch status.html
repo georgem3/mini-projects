@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Twitch Streams</title>
+	<style>
+		body {
+			text-align: center;
+			margin: 6% auto;
+			background-color: #393c56;
+		}
+		li {
+			list-style: none;
+			padding: 14px;
+			background-color: #eee;
+			margin-bottom: 6px;
+			border-radius: 6px;
+			text-align: left;
+		}
+		.offline {
+			opacity: 0.8;
+			font-style: italic;
+		}
+		#streams {
+			width: 600px;
+			margin: 20px auto;
+			padding: 0;
+		}
+		a {
+			color: #b73131;
+			text-decoration: none;
+		}
+		h1 { color: #eee; }
+		h2 { color: #b73131; }
+	</style>
+</head>
+<body>
+	<h1>Twitch Streams</h1>
+	<ul id="streams"></ul>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		var $streams = $("#streams");
+		var channels = ["ESL_SC2", "freecodecamp", "RobotCaleb"];
+		var url = "";
+
+		$(function() {
+			$.each(channels, function(i, channel) {
+				url = "https://wind-bow.gomix.me/twitch-api/streams/" + channel + "?callback=?";
+				$.getJSON(url, function(streamData) {
+ 		 			console.log(streamData);
+ 		 			if (streamData.stream) addStream(streamData, true);
+ 		 			else addStream(channel, false);
+				});
+			});
+		})
+
+		function addStream(stream, isOn) {
+			var streamsTemp = ""
+			if (isOn) {
+				streamsTemp =
+				"<li>" +
+				"<h2><a href='"+ stream.stream.channel.url +"'>"+ stream.stream.channel.display_name +"</a></h2>" +
+				"<p>" + stream.stream.game + ": " + stream.stream.channel.status.substring(0, 55) + "...</p>" +
+				"</li>"
+			} else {
+				streamsTemp =
+				"<li class='offline'>" +
+				"<h2>" + stream + "</h2>" + 
+				"<p>Offline</p>"
+				"</li>"
+			}
+			$streams.append(streamsTemp);
+		}
+	</script>	
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wiki Viewer</title>
+	<style>
+		body {
+			margin: 6% auto;
+			background-color: #393c56;
+		}
+		li {
+			list-style: none;
+			padding: 14px;
+			background-color: #eee;
+			margin-bottom: 6px;
+			border-radius: 6px;
+		}
+		#search-box {
+			width: 400px;
+			margin: 0 auto;
+		}
+		#results {
+			width: 600px;
+			margin: 20px auto;
+			padding: 0;
+		}
+		input {
+			padding: 8px;
+			width: 234px;
+		}
+		button {
+			padding: 8px;
+			display: inline-block;
+		}
+		a {
+			color: #b73131;
+			text-decoration: none;
+			font-size: 1.2em;
+		}
+	</style>
+</head>
+<body>
+	<div id="search-box">
+		<input type="text" placeholder="Search Wiki" id="query">
+		<button id="search-btn">Search</button>
+		<a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank"><button>Random</button></a>
+	</div>
+	<ul id="results"></ul>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		var $results = $("#results");
+		var $query = $("#query");
+
+		$("#search-btn").on("click", function() {
+			if ($query.val().length > 0) {
+				$.ajax({
+					url: 'https://en.wikipedia.org/w/api.php',
+					data: {
+					    action: 'query',
+					    list: 'search',
+					    srsearch: $query.val(),
+					    format: 'json',
+					    formatversion: 2
+					},
+					dataType: 'jsonp',
+					success: function(response) {
+						var $searchResults = response.query.search;
+						$.each($searchResults, function(i, result) {
+							console.log(result);
+							addResult(result);
+						});
+					}
+				});
+			}
+		});
+
+		function addResult(res) {
+			var resultTemp = "" +
+			"<li>" +
+				"<strong><a href=https://en.wikipedia.org/?curid="+ res.pageid +">"+ res.title +"</a></strong>" +
+				"<p>" + res.snippet + "</p>"+
+			"</li>"
+			$results.append(resultTemp);
+		}
+	</script>	
+</body>
+</html>

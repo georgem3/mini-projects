@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pomodoro</title>
+	<style>
+		body { background-color: #122B3B; }
+		#clock {
+			width: 250px;
+			height: 250px;
+			border-radius: 100%;
+			margin: 15% auto;
+			border: solid 3px #f2b44f;
+			text-align: center;
+		}
+		#stat, #time {
+			color: #f2b44f;
+			font-size: 2em;
+			display: block;
+		}
+		#stat {	padding-top: 70px; }
+		#time {	padding-top: 30px; }
+	</style>
+</head>
+<body>
+	<div id="clock">
+		<span id="stat"></span>
+		<span id="time"></span>
+	</div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		var sessionDur = 30, timer;
+		var breakDur = 5;
+		var $clock = $("#clock");
+		var $stat = $("#stat");
+		var $time = $("#time");
+
+		$(function() {
+			$("#stat").html("Start Session");
+			$("#time").html(sessionDur + ":00");
+		})
+
+		$clock.on("click", function() {
+			$("#stat").html("In Session");
+			startTimer();
+		});
+
+		function startTimer() {
+		    timer = sessionDur*60; var minutes, seconds;
+
+		    setInterval(function () {
+		        minutes = parseInt(timer / 60, 10)
+		        seconds = parseInt(timer % 60, 10);
+
+		        minutes = minutes < 10 ? "0" + minutes : minutes;
+		        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+		        $("#time").html(minutes + ":" + seconds);
+
+		        if (--timer < 0) {
+		            if ($stat.text() == "Break!") {
+						$stat.html("Session");
+						timer = sessionDur*60;
+					} else {
+						$stat.html("Break!");
+						timer = breakDur*60;
+					}
+		    	}
+			}, 1000);
+		}
+	</script>
+</body>
+</html>
