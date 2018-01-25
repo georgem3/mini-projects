@@ -19,7 +19,13 @@ Guess the color based on it's RGB
 
 ## Wiki Viewer
 
+![Imgur](https://i.imgur.com/vlaiFR5.png)
+
 ## Twitch Streams Status
 View favorite streams' status
 
+![Imgur](https://i.imgur.com/LJM1iEj.png)
+
 ## Simple Pomodoro
+
+![Imgur](https://i.imgur.com/1Th4P23.png)
