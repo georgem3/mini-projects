@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Weather</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	    <style>
+	    	body {
+	    		background: #344663;
+			    background-size: cover;
+			    color: white;
+			    font-family: Lato;
+			    text-align: center;
+			}
+
+		.day {
+		    background: url("https://images.unsplash.com/photo-1465577512280-1c2d41a79862?dpr=1&auto=format&fit=crop&w=1080&h=740&q=80&cs=tinysrgb&crop=") no-repeat center center fixed;
+		    background-size: cover;
+		}
+
+		.night {
+		    background: url("https://images.unsplash.com/reserve/mW95rWmYSRe4nTMVaRaW_French-Mountain.jpg?dpr=1&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=") no-repeat center center fixed;
+		    background-size: cover;
+		}
+
+		h1 {
+		    font-weight: 700;
+		    font-size: 8em;
+		    margin-bottom: 40px;
+		}
+
+		button {
+		    border: 3px solid white;
+		    border-radius: 100%;
+		    position: absolute;
+		    top: 85%;
+		    left: 49%;
+		    background-color: white;
+		    color: #333;
+		    cursor: pointer;
+		    font-size: 12px;
+		    height: 35px;
+		    width: 35px;
+		}
+
+		#icon {
+		    position: relative;
+		    top: 20px;
+		}
+      </style>
+   </head>
+
+   <body>
+      <h1><span id="temp"></span><span id="tempFah" style="display: none"></span></h1>
+      <h3><span id="desc"></span><span id="icon"></span></h3>
+      <h2><span id="location"></span></h2>
+      <button onclick="toggleUnit()"><strong>C/F</strong></button>
+   </body>
+   
+   <script>
+   	function setBg() {
+	    var currentTime = new Date().getHours();
+
+	    if (currentTime >= 6 && currentTime < 18) document.body.className = "day";
+	    else document.body.className = "night";
+	}
+
+	function getWeather() {
+
+	    var info = document.getElementById("location");
+
+	    navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+
+	    function geoSuccess(position) {
+	        var lat = position.coords.latitude;
+	        var lon = position.coords.longitude;
+	        var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=1f36356ba3bb0b8d64add3163aebe489&units=metric";
+	        $.getJSON(url, function(data) {
+	            $("#temp").html((Number(data.main.temp).toFixed(1)) + "°");
+	            $("#tempFah").html((Number(data.main.temp)*9/5 + 32).toFixed(1));
+	            $("#desc").html(data.weather[0].main);
+	            $("#icon").html('<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">');
+	            $("#location").html(data.name + " - " + data.sys.country);
+	        });
+	    }
+
+	    function geoError() { info.innerHTML = "Couldn't get your location :("; }
+	}
+
+	function toggleUnit() {
+	    var c = document.getElementById("temp");
+	    var f = document.getElementById("tempFah");
+	    if (c.style.display == 'inline' || c.style.display == '') {
+	        c.style.display = 'none';
+	        f.style.display = 'inline';
+	    } else {
+	        c.style.display = 'inline';
+	        f.style.display = 'none';
+	    }
+	}
+
+	setBg();
+	getWeather();
+   </script>
+</html>

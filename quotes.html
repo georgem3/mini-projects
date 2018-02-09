@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Quotd! Quotes from TV</title>
+	<style>
+		body { 
+			background-color: #122B3B; 
+			color: #f2b44f;
+			text-align: center;
+			padding-top: 50px;
+		}
+		#quotesShow {
+			font-size: 4em;
+			margin-top: 40px;
+			font-style: italic;
+		}
+		button { 
+			margin: 10px; 
+			border: 2px solid white;
+			border-radius: 3px;
+			padding: 5px;
+			background-color: white;
+			font-size: 1.2em;
+			color: #122B3B;
+		}
+		button:hover {
+			background-color: #122B3B;
+			border-color: #f2b44f;
+			color: #f2b44f;
+		}
+	</style>
+</head>
+
+<body>
+  	<h1>Random Movie Quotes</h1>
+  	<button onclick="newQuotd()">Quotd!</button>
+  	<div id="quotesShow">
+  		<!-- Quotes go here -->
+  	</div>
+  	
+  	<script>
+  		var quotes = [
+  			"Love means never having to say you're sorry. - Love Story",
+  			"I don't want to survive. I want to live. - 12 Years a Slave",
+  			"My precious. - LOTR",
+  			"They call it a Royale with cheese. - Pulp Fiction",
+  			"Keep your friends close, but your enemies closer. - The Godfather II",
+  			"Say hello to my little friend! - Scarface",
+  			"You can't handle the truth! - A Few Good Men",
+  			"Why so serious? - The Dark Knight",
+  			"The first rule of Fight Club is: You do not talk about Fight Club. - eehm Fight Club"
+  		];
+
+		function newQuotd() {
+			var randomQuote = Math.floor(Math.random() * (quotes.length));
+			document.getElementById("quotesShow").innerHTML = '"' + quotes[randomQuote] + '"';
+		}
+  	</script>
+</body>
+</html>

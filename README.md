@@ -29,3 +29,11 @@ View favorite streams' status
 ## Simple Pomodoro
 
 ![Imgur](https://i.imgur.com/1Th4P23.png)
+
+## Weather widget
+
+![Imgur](https://i.imgur.com/2GTldia.png)
+
+## Random quotes generator
+
+![Imgur](https://i.imgur.com/hSpfwgE.png)
