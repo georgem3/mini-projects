@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<link rel="icon" href="favicon-home.ico">
+	<style>
+		body {
+			background-color: #222;
+			padding-top: 80px;
+			font-family: Roboto;
+		}
+		div	{
+			width: 100%;
+			display: block;
+			text-align: center;
+			padding-top: 28px;
+		}
+		a {
+			font-size: 20px;
+			padding: 18px;
+			text-decoration: none;
+			color: #e0c257;
+			line-height: 2em;
+		}
+		i {
+			color: #fed63c;
+			font-size: 40px;
+			padding-right: 7px;
+			padding-bottom: 2px;
+			line-height: 1em;
+			vertical-align:middle;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<a id="openBtn" href="#"><i class="fas fa-external-link-alt"></i>All</a>
+	</div>
+	<div>
+		<a href="https://www.arstechnica.com" target="_blank" class="ao"><i class="fab fa-adn"></i>ArsTech</a>
+		<a href="https://www.omgubuntu.co.uk" target="_blank" class="ao"><i class="fab fa-linux"></i>OMGUbuntu</a>
+		<a href="https://www.gsmarena.com" target="_blank" class="ao"><i class="fas fa-mobile-alt"></i>GSMArena</a>
+		<a href="https://www.bloomberg.com" target="_blank" class="ao"><i class="fas fa-bold"></i>Bloomberg</a>
+		<a href="https://hn.premii.com/" target="_blank" class="ao"><i class="fab fa-hacker-news-square"></i>HackerNews</a>
+		<a href="https://www.medium.com" target="_blank" class="ao"><i class="fab fa-medium"></i>Medium</a>
+	</div>
+	<div>
+		<a href="https://reddit.com" target="_blank" class="ao"><i class="fab fa-reddit-square"></i>Reddit</a>
+		<a href="https://twitter.com" target="_blank" class="ao"><i class="fab fa-twitter"></i>Twitter</a>
+		<a href="https://youtube.com" target="_blank" class="ao"><i class="fab fa-youtube"></i>YouTube</a>
+		<a href="https://youtube.videodeck.net/" target="_blank" ><i class="fas fa-video"></i>VideoDeck</a>
+		<a href="https://gmail.com" target="_blank" ><i class="far fa-envelope"></i>Gmail</a>
+	</div>
+	<div>
+		<a href="https://mydealz.de" target="_blank" class="ao"><i class="fas fa-tag"></i>Mydealz</a>
+		<a href="https://docs.google.com/spreadsheets/u/0/" target="_blank" ><i class="fas fa-table"></i>Sheets</a>
+		<a href="https://www.netflix.com/browse" target="_blank" ><i class="fas fa-film"></i>Netflix</a>
+	</div>
+
+	<script>
+		document.getElementById("openBtn").addEventListener("click", function(e) {
+			e.preventDefault();
+			const links = document.getElementsByClassName("ao");
+			for (let i=0; i<links.length; i++) {
+				window.open(links[i].href)
+			}
+		});
+	</script>
+</body>
+</html>
